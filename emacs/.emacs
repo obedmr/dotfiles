@@ -13,7 +13,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (all-the-icons neotree go-mode))))
+ '(package-selected-packages
+   (quote
+    (go-playground company auto-complete all-the-icons neotree go-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -36,3 +38,22 @@
 ;; Golang
 '(package-selected-packages (quote (go-mode)))
 (add-hook 'before-save-hook 'gofmt-before-save)
+
+;; https://github.com/auto-complete/auto-complete
+;; https://github.com/nsf/gocode/blob/master/emacs/go-autocomplete.el
+(add-to-list 'load-path (concat
+			       (getenv "GOPATH")
+			       "/src/github.com/nsf/gocode/emacs"))
+
+(load "go-autocomplete")
+(require 'auto-complete-config)
+(require 'go-autocomplete)
+(ac-config-default)
+
+(defun my-go-mode-hook ()
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  ; Godef jump key binding
+  (local-set-key (kbd "M-.") 'godef-jump)
+  (local-set-key (kbd "M-*") 'pop-tag-mark)
+  )
+(add-hook 'go-mode-hook 'my-go-mode-hook)
