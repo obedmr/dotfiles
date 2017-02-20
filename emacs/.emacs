@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (go-playground company auto-complete all-the-icons neotree go-mode))))
+    (darkokai-theme go-playground company auto-complete all-the-icons neotree go-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -57,3 +57,35 @@
   (local-set-key (kbd "M-*") 'pop-tag-mark)
   )
 (add-hook 'go-mode-hook 'my-go-mode-hook)
+
+
+;;; Emacs general config ;;;
+
+;; No bell
+(setq ring-bell-function 'ignore)
+(setq bell-volume 0)
+
+;; Hightline current line
+(global-hl-line-mode t)
+
+;; Show trailing whitespaces
+(setq-default show-trailing-whitespace t)
+
+;; windows management
+(winner-mode 1)
+
+(menu-bar-mode 0)                        ; no file/edit/blabla top menu.
+(setq inhibit-startup-message t)         ; no splash display.
+(setq-default truncate-lines t)          ; no wrapping.
+(fset 'yes-or-no-p 'y-or-n-p)            ; yes/no shortcut.
+(when (require 'ido nil t) (ido-mode t)) ; (much) better file/buffer browsing.
+(global-font-lock-mode t)		 ; default enable syntax coloration.
+(setq initial-scratch-message "")	 ; remove the default text within the scratch buffer
+
+;; Display current line/column
+(column-number-mode 1)
+(line-number-mode 1)
+
+;; Theme
+;; https://github.com/sjrmanning/darkokai
+(load-theme 'darkokai t)
