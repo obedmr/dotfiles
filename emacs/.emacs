@@ -89,3 +89,7 @@
 ;; Theme
 ;; https://github.com/sjrmanning/darkokai
 (load-theme 'darkokai t)
+
+;; Default tab width
+(setq tab-width 4)
+(setq-default c-basic-offset 4)
