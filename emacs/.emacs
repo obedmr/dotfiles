@@ -13,9 +13,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("70403e220d6d7100bae7775b3334eddeb340ba9c37f4b39c189c2c29d458543b" "1b1e54d9e0b607010937d697556cd5ea66ec9c01e555bb7acea776471da59055" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-selected-packages
    (quote
-    (darkokai-theme go-playground company auto-complete all-the-icons neotree go-mode))))
+    (solarized-theme flycheck darkokai-theme go-playground company auto-complete all-the-icons neotree go-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
