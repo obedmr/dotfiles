@@ -68,7 +68,8 @@
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
 
-(require 'go-eldoc) ;; Don't need to require, if you install by package.el
+;; https://github.com/syohex/emacs-go-eldoc
+(require 'go-eldoc)
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 ;;; Emacs general config ;;;
