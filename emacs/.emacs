@@ -64,6 +64,7 @@
   )
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
+;; https://github.com/alecthomas/gometalinter#installing
 (require 'flycheck-gometalinter)
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
