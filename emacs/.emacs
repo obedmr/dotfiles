@@ -8,8 +8,8 @@
                          ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")))
 
-(package-initialize)
-(package-refresh-contents)
+;; (package-initialize)
+;; (package-refresh-contents)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
