@@ -30,6 +30,8 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; Enable flycheck for all
+(global-flycheck-mode)
 
 ;; Icons
 ;; https://github.com/domtronn/all-the-icons.el
@@ -68,6 +70,15 @@
 (require 'flycheck-gometalinter)
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
+;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
+(setq flycheck-gometalinter-vendor t)
+(setq flycheck-gometalinter-enable-linters '("golint" "gocyclo"
+					     "misspell" "varcheck"
+					     "structcheck" "deadcode"
+					     "vet" "ineffassign" "gofmt"))
+(setq flycheck-gometalinter-test t)
+
+
 
 ;; https://github.com/syohex/emacs-go-eldoc
 (require 'go-eldoc)
