@@ -76,11 +76,12 @@ export GOPATH=~/dev/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 
+export SSH_PRIVATE_KEY="$(cat ~/.ssh/id_rsa)"
+export GIT_CONFIG_FILE="$(cat ~/.gitconfig)"
 if [ -f ~/.extras ]; then
     source ~/.extras
 fi
- 
-
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
