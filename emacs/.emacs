@@ -7,10 +7,18 @@
 ;                         ("marmalade" . "https://marmalade-repo.org/packages/")
 ;                         ("melpa" . "https://melpa.org/packages/")))
 
+(require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 ;(package-refresh-contents)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -22,7 +30,7 @@
     ("70403e220d6d7100bae7775b3334eddeb340ba9c37f4b39c189c2c29d458543b" "1b1e54d9e0b607010937d697556cd5ea66ec9c01e555bb7acea776471da59055" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-selected-packages
    (quote
-    (floobits go-eldoc auto-complete go-autocomplete json-mode yaml-mode haste flycheck-gometalinter solarized-theme flycheck darkokai-theme go-playground company neotree go-mode))))
+    (terraform-mode floobits go-eldoc auto-complete go-autocomplete json-mode yaml-mode haste flycheck-gometalinter solarized-theme flycheck darkokai-theme go-playground company neotree go-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -53,10 +61,10 @@
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; https://github.com/auto-complete/auto-complete
-;; https://github.com/nsf/gocode/blob/master/emacs/go-autocomplete.el
+;; https://github.com/mdempsky/gocode/blob/master/emacs/go-autocomplete.el
 (add-to-list 'load-path (concat
 			       (getenv "GOPATH")
-			       "/src/github.com/nsf/gocode/emacs"))
+			       "/src/github.com/mdempsky/gocode/emacs"))
 
 (load "go-autocomplete")
 (require 'auto-complete-config)
@@ -75,7 +83,7 @@
   )
 (add-hook 'go-mode-hook 'my-go-mode-hook)
 
-;; https://github.com/syohex/emacs-go-eldoc
+;; https://github.com/emacsorphanage/go-eldoc
 (require 'go-eldoc)
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
