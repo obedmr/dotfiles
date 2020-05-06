@@ -1,15 +1,16 @@
+
 ;;; package -- Summary
 ;;; Commentary:
 
 ;;; Code:
+(setq package-archives '())
+;                         ("marmalade" . "https://marmalade-repo.org/packages/")
+;                         ("melpa" . "https://melpa.org/packages/")))
+
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
-
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
-
-;; (package-initialize)
-;; (package-refresh-contents)
+;(package-refresh-contents)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -21,7 +22,7 @@
     ("70403e220d6d7100bae7775b3334eddeb340ba9c37f4b39c189c2c29d458543b" "1b1e54d9e0b607010937d697556cd5ea66ec9c01e555bb7acea776471da59055" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(package-selected-packages
    (quote
-    (json-mode yaml-mode haste flycheck-gometalinter solarized-theme flycheck darkokai-theme go-playground company auto-complete all-the-icons neotree go-mode))))
+    (floobits go-eldoc auto-complete go-autocomplete json-mode yaml-mode haste flycheck-gometalinter solarized-theme flycheck darkokai-theme go-playground company neotree go-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -31,7 +32,8 @@
  )
 
 ;; Enable flycheck for all
-(global-flycheck-mode)
+;;(global-flycheck-mode)
+(ac-config-default)
 (flyspell-prog-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
@@ -42,9 +44,9 @@
 
 ;; Neo Tree
 ;; https://www.emacswiki.org/emacs/NeoTree
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+;(require 'neotree)
+;(global-set-key [f8] 'neotree-toggle)
+;(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
 ;; Golang
 '(package-selected-packages (quote (go-mode)))
@@ -61,6 +63,10 @@
 (require 'go-autocomplete)
 (ac-config-default)
 
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "GOPATH"))
+
 (defun my-go-mode-hook ()
   (add-hook 'before-save-hook 'gofmt-before-save)
   ; Godef jump key binding
@@ -68,20 +74,6 @@
   (local-set-key (kbd "M-*") 'pop-tag-mark)
   )
 (add-hook 'go-mode-hook 'my-go-mode-hook)
-
-;; https://github.com/alecthomas/gometalinter#installing
-(require 'flycheck-gometalinter)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-gometalinter-setup))
-;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
-(setq flycheck-gometalinter-vendor t)
-(setq flycheck-gometalinter-enable-linters '("golint" "gocyclo"
-					     "misspell" "varcheck"
-					     "structcheck" "deadcode"
-					     "vet" "ineffassign" "gofmt"))
-(setq flycheck-gometalinter-test t)
-
-
 
 ;; https://github.com/syohex/emacs-go-eldoc
 (require 'go-eldoc)
@@ -124,3 +116,11 @@
 
 ;; Hastebin
 (autoload 'haste "haste" nil t)
+
+;; Tramp
+(setq tramp-verbose 10)
+
+(autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
+(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
+
+(add-hook 'text-mode-hook 'auto-fill-mode)
