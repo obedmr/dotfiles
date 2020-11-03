@@ -1,0 +1,17 @@
+
+
+export PATH=/usr/local/bin/:$HOME/.bin/:$PATH
+
+if [ -d /home/obedmr/ ]; then
+    export GOPATH=/home/obedmr/dev/go
+fi
+
+export GOOGLE_APPLICATION_CREDENTIALS=/Users/obed.munoz/dev/classify-83e24921380b.json
+
+export EDITOR=emacs
+
+
+alias server="go run server.go -host localhost -port 9000"
+alias user1="go run client.go -user user1 -server localhost:9000"
+alias user2="go run client.go -user user2 -server localhost:9000"
+alias user3="go run client.go -user user3 -server localhost:9000"
