@@ -8,6 +8,7 @@ export ZSH=~/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+#ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -85,3 +86,15 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/onmunoz/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/onmunoz/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/onmunoz/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/onmunoz/google-cloud-sdk/completion.zsh.inc'; fi
+
+PATH="/Users/obed.munoz/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/obed.munoz/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/obed.munoz/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/obed.munoz/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/obed.munoz/perl5"; export PERL_MM_OPT;
